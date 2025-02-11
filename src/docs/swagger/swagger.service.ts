@@ -43,8 +43,8 @@ export class SwaggerService {
 		const document = SwaggerModule.createDocument(app, config, documentOptions);
 
 		const moduleOptions: SwaggerCustomOptions = {
-			customSiteTitle: "Zephyr API Documentation",
-			// customfavIcon: "../../../assets/svg/zephyr.svg",
+			customSiteTitle: "Hearth API Documentation",
+			// customfavIcon: "../../../assets/svg/hearth.svg",
 		};
 		SwaggerModule.setup("docs", app, document, moduleOptions);
 	}
