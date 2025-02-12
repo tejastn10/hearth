@@ -21,12 +21,16 @@ export class RequestMiddleware implements NestMiddleware {
 
 		res.on("finish", () => {
 			const { statusCode } = res;
-			const { ["content-length"]: contentLength, ["content-type"]: contentType } = res.getHeaders();
+			const headers = res.getHeaders();
+
+			// Fallback values
+			const contentType = headers["content-type"] || "unknown";
+			const contentLength = headers["content-length"] ? `${headers["content-length"]}b` : "0b";
 
 			const durationInMilliseconds = this.getDurationInMilliseconds(startTime);
 
 			this.logger.debug(
-				`${method} ${originalUrl} ${statusCode} \x1b[36m[${contentType}] - ${contentLength}b - \x1b[0m${durationInMilliseconds}ms`
+				`${method} ${originalUrl} ${statusCode} \x1b[36m[${contentType}] - ${contentLength} - \x1b[0m${durationInMilliseconds}ms`
 			);
 		});
 
