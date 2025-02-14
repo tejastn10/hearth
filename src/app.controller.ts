@@ -47,9 +47,8 @@ export class AppController {
 					this.memory.checkHeap("memory_heap", 150 * 1024 * 1024), // Check memory usage
 				async (): Promise<HealthIndicatorResult> =>
 					this.disk.checkStorage("disk_storage", { thresholdPercent: 0.5, path: "/" }), // Check disk usage
-				// TODO: Uncomment the following line after setting up the database
-				// async (): Promise<HealthIndicatorResult> =>
-				// 	this.database.pingCheck("database", { timeout: 300 }), // Check database connection
+				async (): Promise<HealthIndicatorResult> =>
+					this.database.pingCheck("database", { timeout: 300 }), // Check database connection
 			]);
 
 			// If any individual health check fails, throw an error
