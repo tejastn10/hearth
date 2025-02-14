@@ -36,7 +36,9 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # dotenv environment variable files
-.env
+# ? Uncomment the next line if you need to use environment variables in your project
+# ? Commented as the template has an example of .env
+# .env
 .env.development.local
 .env.test.local
 .env.production.local
