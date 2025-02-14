@@ -15,15 +15,21 @@
 
 ## Features ⚡
 
-- **NestJS**: A progressive Node.js framework for scalable applications.
-- **TypeScript**: Static typing for better code reliability and maintainability.
-- **Pre-configured Tooling**:
-  - **ESLint**: Identify and fix linting issues.
-  - **Prettier**: Opinionated code formatting.
-  - **Husky**: Pre-commit hooks for enforcing best practices.
-  - **Commitlint**: Enforce consistent commit message formatting.
-- **Modular Architecture**: Designed for scalability and maintainability.
-- **Developer Experience**: Optimized setup for efficient backend development.
+- **NestJS**: A progressive Node.js framework for scalable applications.  
+- **TypeScript**: Static typing for better code reliability and maintainability.  
+- **Pre-configured Tooling**:  
+  - **ESLint**: Identify and fix linting issues.  
+  - **Prettier**: Opinionated code formatting.  
+  - **Husky**: Pre-commit hooks for enforcing best practices.  
+  - **Commitlint**: Enforce consistent commit message formatting.  
+- **Modular Architecture**: Designed for scalability and maintainability.  
+- **Swagger API Documentation**:  
+  - Built-in OpenAPI (Swagger) integration for easy API exploration.
+- **Database Support**:  
+  - **PostgreSQL**: Integrated with TypeORM for relational database needs.  
+  - **MongoDB**: Uses Mongoose ODM for handling NoSQL collections.  
+- **Developer Experience**: Optimized setup for efficient backend development.  
+- **Environment Configuration**: An example `.env` file has been added for reference.
 
 ---
 
@@ -59,6 +65,7 @@ Ensure you have the following installed:
    ```
 
 4. Your server is now running at `http://localhost:5000`.
+5. To access Swagger API Docs open `http://localhost:5000/docs`.
 
 ---
 
@@ -73,4 +80,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Built with **NestJS** for a structured and scalable backend foundation.
 - Inspired by the warmth of **Hearth**, providing a solid starting point for backend projects.
 - Made with ❤️ for developers who value clean and efficient backend architectures.
-
