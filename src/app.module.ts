@@ -11,6 +11,8 @@ import { SwaggerModule } from "./docs/swagger/swagger.module";
 
 import { DatabaseModule } from "./database/database.module";
 
+import { CoreModule } from "./core/core.module";
+
 @Module({
 	imports: [
 		// Configs
@@ -20,6 +22,9 @@ import { DatabaseModule } from "./database/database.module";
 
 		// Database
 		DatabaseModule,
+
+		// Main Modules
+		CoreModule,
 	],
 	controllers: [AppController],
 	providers: [],
