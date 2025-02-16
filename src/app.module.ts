@@ -12,6 +12,7 @@ import { SwaggerModule } from "./docs/swagger/swagger.module";
 import { DatabaseModule } from "./database/database.module";
 
 import { CoreModule } from "./core/core.module";
+import { CruxModule } from "./crux/crux.module";
 
 @Module({
 	imports: [
@@ -25,6 +26,7 @@ import { CoreModule } from "./core/core.module";
 
 		// Main Modules
 		CoreModule,
+		CruxModule,
 	],
 	controllers: [AppController],
 	providers: [],
