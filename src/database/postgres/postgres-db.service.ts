@@ -33,6 +33,10 @@ export class PostgresDBService implements TypeOrmOptionsFactory {
 			// Connection pool settings
 			poolSize: this.configService.getNumber("POSTGRES_POOL_SIZE") || 10, // Default pool size
 
+			// Connection retry settings
+			retryAttempts: this.configService.getNumber("POSTGRES_RETRY_ATTEMPTS") || 5,
+			retryDelay: this.configService.getNumber("POSTGRES_RETRY_DELAY") || 3000,
+
 			// Logging options
 			logging: this.configService.getString("POSTGRES_LOGGING") === "true", // Enable logging
 			logger: "debug", // Logger type
