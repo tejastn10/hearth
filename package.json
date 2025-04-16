@@ -4,7 +4,7 @@
 	"scripts": {
 		"database": "docker compose up -d",
 		"build": "nest build",
-		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+		"format": "prettier --write \"src/**/*.ts\"",
 		"start": "nest start",
 		"dev": "npm run database && nest start --watch --preserveWatchOutput",
 		"debug": "nest start --debug --watch --preserveWatchOutput",
