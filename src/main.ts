@@ -26,9 +26,15 @@ import { SwaggerService } from "./docs/swagger/swagger.service";
 const bootstrap = async (): Promise<void> => {
 	const FastifyModule = new FastifyAdapter();
 
-	// Enabling things for Fastify server
-	FastifyModule.register(helmet, HelmetOptions);
-	FastifyModule.enableCors(CorsOptions);
+	// ! Only enabling Helmet for PROD
+	if (process.env.NODE_ENV === "production") {
+		FastifyModule.register(helmet, HelmetOptions);
+	}
+
+	// Enabling CORS for all origins for development
+	FastifyModule.enableCors(
+		process.env.NODE_ENV === "development" ? { origin: true, credentials: true } : CorsOptions
+	);
 
 	const app = await NestFactory.create<NestFastifyApplication>(
 		AppModule,
@@ -51,10 +57,12 @@ const bootstrap = async (): Promise<void> => {
 	const configService = app.select(ConfigModule).get(ConfigService);
 	const MODE = configService.getString("MODE") || "DEV";
 	const PORT = configService.getNumber("PORT") || 5000;
+	const HOST = configService.getString("HOST") || "0.0.0.0";
 
 	await app.listen(
 		{
 			port: PORT,
+			host: HOST,
 		},
 		(error, address) => {
 			if (error) {
@@ -63,7 +71,7 @@ const bootstrap = async (): Promise<void> => {
 			}
 
 			Logger.verbose(`Server listening on port:${PORT}`, "SERVER");
-			Logger.verbose(`IPv4: http://localhost:${PORT}`, "SERVER");
+			Logger.verbose(`IPv4: http://${HOST}:${PORT}`, "SERVER");
 			Logger.verbose(`IPv6: ${address}`, "SERVER");
 
 			Logger.debug(`Server running in ${MODE} mode`, "SERVER");
