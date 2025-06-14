@@ -26,15 +26,25 @@ import { SwaggerService } from "./docs/swagger/swagger.service";
 const bootstrap = async (): Promise<void> => {
 	const FastifyModule = new FastifyAdapter();
 
-	// ! Only enabling Helmet for PROD
-	if (process.env.NODE_ENV === "production") {
+	const isProduction = process.env.NODE_ENV === "production";
+
+	// * Security configurations
+	if (isProduction) {
 		FastifyModule.register(helmet, HelmetOptions);
+	} else {
+		Logger.warn("Running without Helmet in non-production environment", "Security");
 	}
 
-	// Enabling CORS for all origins for development
-	FastifyModule.enableCors(
-		process.env.NODE_ENV === "development" ? { origin: true, credentials: true } : CorsOptions
-	);
+	// * CORS configuration
+	const corsConfig = isProduction
+		? CorsOptions
+		: {
+				origin: true,
+				credentials: true,
+				// ? You might want to add other development-specific options here
+			};
+
+	FastifyModule.enableCors(corsConfig);
 
 	const app = await NestFactory.create<NestFastifyApplication>(
 		AppModule,
