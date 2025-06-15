@@ -26,7 +26,7 @@ import { SwaggerService } from "./docs/swagger/swagger.service";
 const bootstrap = async (): Promise<void> => {
 	const FastifyModule = new FastifyAdapter();
 
-	const isProduction = process.env.NODE_ENV === "production";
+	const isProduction = process.env.ENV === "Production";
 
 	// * Security configurations
 	if (isProduction) {
