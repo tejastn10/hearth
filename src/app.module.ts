@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { TerminusModule } from "@nestjs/terminus";
 
-import { RequestMiddleware } from "./middleware/request.middleware";
+import { RequestMiddleware } from "./middlewares/request.middleware";
 import { RequestMiddlewareOptions } from "./options";
 
 import { AppController } from "./app.controller";
