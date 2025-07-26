@@ -25,10 +25,7 @@
 - **Modular Architecture**: Designed for scalability and maintainability.  
 - **Swagger API Documentation**:  
   - Built-in OpenAPI (Swagger) integration for easy API exploration.
-- **Database Support**:  
-  - **PostgreSQL**: Integrated with TypeORM for relational database needs.  
-  - **MongoDB**: Uses Mongoose ODM for handling NoSQL collections.  
-- **Developer Experience**: Optimized setup for efficient backend development.  
+- **Redis Cache**: Integrated Redis service for caching and performance optimization.
 - **Environment Configuration**: An example `.env` file has been added for reference.
 
 ---
