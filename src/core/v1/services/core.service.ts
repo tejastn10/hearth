@@ -12,6 +12,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { FindManyOptions, Repository } from "typeorm";
 import { ValidationError } from "class-validator";
 
+import { RedisService } from "../../../cache/redis/redis.service";
+
 import { Core } from "../../entities/core.entity";
 
 import { CreateCoreRequestDto, CreateCoreResponseDto } from "../dto/create-core.dto";
@@ -24,7 +26,9 @@ import { ResponseMessage } from "../../../common/enum/response";
 export class CoreService {
 	constructor(
 		@InjectRepository(Core)
-		private coreRepository: Repository<Core>
+		private coreRepository: Repository<Core>,
+
+		private readonly redisService: RedisService
 	) {}
 
 	private readonly logger = new Logger(CoreService.name);
@@ -41,6 +45,8 @@ export class CoreService {
 			const transformedCore: CreateCoreResponseDto = {
 				id: savedCore.id,
 			};
+			await this.redisService.set(`core:${savedCore.id}`, transformedCore);
+
 			this.logger.log("Core transformed & returned!");
 
 			return transformedCore;
@@ -60,6 +66,13 @@ export class CoreService {
 	async find(id: string): Promise<FindCoreResponseDto> {
 		try {
 			this.logger.log(`Attempting to find core by ID: ${id}`);
+
+			const cachedCore = await this.redisService.get<FindCoreResponseDto>(`core:${id}`);
+			if (cachedCore) {
+				this.logger.log(`Core found in cache for ID: ${id}`);
+				return cachedCore;
+			}
+
 			const core = await this.coreRepository.findOne({ where: { id } });
 
 			if (!core) {
@@ -136,6 +149,9 @@ export class CoreService {
 			}
 
 			await this.coreRepository.remove(core);
+
+			await this.redisService.del(`core:${id}`);
+
 			this.logger.log(`Core with ID: ${id} deleted successfully`);
 
 			return "Core deleted successfully";

@@ -9,6 +9,8 @@ import { AppController } from "./app.controller";
 import { ConfigModule } from "./config/config.module";
 import { SwaggerModule } from "./docs/swagger/swagger.module";
 
+import { CacheModule } from "./cache/cache.module";
+
 import { DatabaseModule } from "./database/database.module";
 
 import { CoreModule } from "./core/core.module";
@@ -20,6 +22,9 @@ import { CruxModule } from "./crux/crux.module";
 		ConfigModule,
 		SwaggerModule,
 		TerminusModule,
+
+		// Cache
+		CacheModule,
 
 		// Database
 		DatabaseModule,

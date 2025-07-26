@@ -12,6 +12,8 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { ValidationError } from "class-validator";
 
+import { RedisService } from "../../../cache/redis/redis.service";
+
 import { Crux, CruxDocument } from "../../schema/crux.schema";
 
 import { CreateCruxRequestDto, CreateCruxResponseDto } from "../dto/create-crux.dto";
@@ -24,7 +26,9 @@ import { ResponseMessage } from "../../../common/enum/response";
 export class CruxService {
 	constructor(
 		@InjectModel(Crux.name)
-		private cruxModel: Model<CruxDocument>
+		private cruxModel: Model<CruxDocument>,
+
+		private readonly redisService: RedisService
 	) {}
 
 	private readonly logger = new Logger(CruxService.name);
@@ -41,6 +45,8 @@ export class CruxService {
 			const transformedCrux: CreateCruxResponseDto = {
 				id: savedCrux._id as string,
 			};
+			await this.redisService.set(`crux:${savedCrux._id}`, transformedCrux);
+
 			this.logger.log("Crux transformed & returned!");
 
 			return transformedCrux;
@@ -60,6 +66,13 @@ export class CruxService {
 	async find(id: string): Promise<FindCruxResponseDto> {
 		try {
 			this.logger.log(`Attempting to find crux by ID: ${id}`);
+
+			const cachedCrux = await this.redisService.get<FindCruxResponseDto>(`crux:${id}`);
+			if (cachedCrux) {
+				this.logger.log(`Crux found in cache for ID: ${id}`);
+				return cachedCrux;
+			}
+
 			const crux = await this.cruxModel.findById(id).exec();
 
 			if (!crux) {
@@ -135,6 +148,9 @@ export class CruxService {
 			}
 
 			await crux.deleteOne();
+
+			await this.redisService.del(`crux:${id}`);
+
 			this.logger.log(`Crux with ID: ${id} deleted successfully`);
 
 			return "Crux deleted successfully";
@@ -163,6 +179,7 @@ export class CruxService {
 
 			this.logger.log("Crux/Cruxes found");
 
+			// Return a single crux if only one crux is found, otherwise return the array of cruxes
 			return cruxes.length === 1 ? cruxes[0] : cruxes;
 		} catch (error) {
 			this.logger.error(`Failed to find crux/cruxes: ${error.message}`);
