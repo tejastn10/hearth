@@ -28,11 +28,12 @@ export class ExceptionInterceptor implements NestInterceptor {
 						{
 							method: request.method,
 							url: request.url,
-							headers: request.headers,
-						}
-					)}. Error: ${err instanceof Error ? err.message : err}`,
-					err instanceof Error ? err.stack : undefined
+						},
+						null,
+						2
+					)}. Error: ${err instanceof Error ? err.message : err}`
 				);
+				this.logger.error(`Error stack: ${err instanceof Error ? err.stack : undefined}`);
 
 				// Check the type of the error and handle accordingly
 				if (err instanceof HttpException) {
