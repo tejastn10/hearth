@@ -15,17 +15,21 @@
 
 ## Features ⚡
 
-- **NestJS**: A progressive Node.js framework for scalable applications.  
-- **TypeScript**: Static typing for better code reliability and maintainability.  
-- **Pre-configured Tooling**:  
-  - **ESLint**: Identify and fix linting issues.  
-  - **Prettier**: Opinionated code formatting.  
-  - **Husky**: Pre-commit hooks for enforcing best practices.  
-  - **Commitlint**: Enforce consistent commit message formatting.  
-- **Modular Architecture**: Designed for scalability and maintainability.  
-- **Swagger API Documentation**:  
+- **NestJS**: A progressive Node.js framework for scalable applications.
+- **TypeScript**: Static typing for better code reliability and maintainability.
+- **Pre-configured Tooling**:
+  - **ESLint**: Identify and fix linting issues.
+  - **Prettier**: Opinionated code formatting.
+  - **Husky**: Pre-commit hooks for enforcing best practices.
+  - **Commitlint**: Enforce consistent commit message formatting.
+- **Modular Architecture**: Designed for scalability and maintainability.
+- **Swagger API Documentation**:
   - Built-in OpenAPI (Swagger) integration for easy API exploration.
+- **Database Support**:
+  - **PostgreSQL**: Integrated with TypeORM for relational database needs.
+  - **MongoDB**: Uses Mongoose ODM for handling NoSQL collections.
 - **Redis Cache**: Integrated Redis service for caching and performance optimization.
+- **Developer Experience**: Optimized setup for efficient backend development.
 - **Environment Configuration**: An example `.env` file has been added for reference.
 
 ---
