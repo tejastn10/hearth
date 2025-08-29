@@ -12,7 +12,7 @@ export class ConfigService {
 	getNumber(key: string): number {
 		const value = this.configService.get<number>(key);
 		const numberValue = Number(value);
-		return isNaN(numberValue) ? 0 : numberValue;
+		return Number.isNaN(numberValue) ? 0 : numberValue;
 	}
 
 	getBoolean(key: string): boolean {

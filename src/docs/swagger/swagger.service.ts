@@ -13,8 +13,6 @@ import type { SwaggerDocumentBuilderOptions } from "./types";
 
 @Injectable()
 export class SwaggerService {
-	constructor() {}
-
 	createDocument(app: NestFastifyApplication, builderOptions: SwaggerDocumentBuilderOptions): void {
 		const documentBuilder = new DocumentBuilder()
 			.setTitle(builderOptions.title || "API Documentation")

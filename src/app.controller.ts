@@ -1,12 +1,12 @@
 import { Controller, Get, HttpException, Logger } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import {
-	HealthCheckService,
+	DiskHealthIndicator,
 	HealthCheck,
 	HealthCheckResult,
-	MemoryHealthIndicator,
-	DiskHealthIndicator,
+	HealthCheckService,
 	HealthIndicatorResult,
+	MemoryHealthIndicator,
 	TypeOrmHealthIndicator,
 } from "@nestjs/terminus";
 

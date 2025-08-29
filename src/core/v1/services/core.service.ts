@@ -1,26 +1,22 @@
 import {
+	BadRequestException,
+	ConflictException,
+	ImATeapotException,
 	Injectable,
 	Logger,
-	NotFoundException,
-	ConflictException,
-	BadRequestException,
-	ImATeapotException,
 	NotAcceptableException,
+	NotFoundException,
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-
-import { FindManyOptions, Repository } from "typeorm";
 import { ValidationError } from "class-validator";
+import { FindManyOptions, Repository } from "typeorm";
 
 import { RedisService } from "../../../cache/redis/redis.service";
-
+import { ResponseMessage } from "../../../common/enum/response";
 import { Core } from "../../entities/core.entity";
-
 import { CreateCoreRequestDto, CreateCoreResponseDto } from "../dto/create-core.dto";
 import { FindCoreResponseDto } from "../dto/find-core.dto";
 import { UpdateCoreRequestDto, UpdateCoreResponseDto } from "../dto/update-core.dto";
-
-import { ResponseMessage } from "../../../common/enum/response";
 
 @Injectable()
 export class CoreService {
