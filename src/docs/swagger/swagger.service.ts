@@ -1,15 +1,15 @@
 import { Injectable } from "@nestjs/common";
-import { NestFastifyApplication } from "@nestjs/platform-fastify";
+import type { NestFastifyApplication } from "@nestjs/platform-fastify";
 import {
 	DocumentBuilder,
-	SwaggerCustomOptions,
-	SwaggerDocumentOptions,
+	type SwaggerCustomOptions,
+	type SwaggerDocumentOptions,
 	SwaggerModule,
 } from "@nestjs/swagger";
 
 import { moduleTags } from "./swagger.tags";
 
-import { SwaggerDocumentBuilderOptions } from "./types";
+import type { SwaggerDocumentBuilderOptions } from "./types";
 
 @Injectable()
 export class SwaggerService {
