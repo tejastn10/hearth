@@ -9,7 +9,7 @@
 ![NestJS](https://img.shields.io/badge/NestJS-11%2B-E0234E?logo=nestjs&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow?logo=open-source-initiative&logoColor=white)
 
-**Hearth** is a minimal yet powerful backend template built with [NestJS](https://nestjs.com/). It provides a structured foundation for building scalable and maintainable server-side applications. The template includes pre-configured tooling like ESLint, Prettier, Husky, and Commitlint to ensure a smooth development experience and maintain consistent code quality.
+**Hearth** is a minimal yet powerful backend template built with [NestJS](https://nestjs.com/). It provides a structured foundation for building scalable and maintainable server-side applications. The template includes pre-configured tooling like Biome, Husky, and Commitlint to ensure a smooth development experience and maintain consistent code quality.
 
 ---
 
@@ -18,8 +18,7 @@
 - **NestJS**: A progressive Node.js framework for scalable applications.
 - **TypeScript**: Static typing for better code reliability and maintainability.
 - **Pre-configured Tooling**:
-  - **ESLint**: Identify and fix linting issues.
-  - **Prettier**: Opinionated code formatting.
+  - **BiomeJS**: Enforces consistent code quality.
   - **Husky**: Pre-commit hooks for enforcing best practices.
   - **Commitlint**: Enforce consistent commit message formatting.
 - **Modular Architecture**: Designed for scalability and maintainability.
